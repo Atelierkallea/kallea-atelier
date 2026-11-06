@@ -1,26 +1,211 @@
 @import "tailwindcss";
 
+/*
+  Charte graphique Kalléa Atelier (relevée sur les maquettes Canva).
+  Modifier une couleur ici la change partout sur le site.
+*/
+@theme {
+  --color-creme: #f5f2ed; /* fond des pages */
+  --color-ivoire: #f4f5ef; /* fond de la barre de menu */
+  --color-or: #977545; /* titres, logo */
+  --color-or-profond: #86683d; /* petits textes dorés (coordonnées), un peu plus foncé pour rester lisible */
+  --color-brun: #594637; /* bandes sombres */
+  --color-texte: #52483f; /* texte courant */
+  --color-texte-clair: #fcf2ea; /* texte sur les bandes sombres */
+  /*
+    Liens du menu : légèrement plus foncés que sur la maquette (#8c775a / #b5a895)
+    pour être lisibles par tous (choix validé).
+  */
+  --color-menu-actif: #76634b; /* page en cours */
+  --color-menu: #978872; /* autres pages */
+  --color-cadre: #604d47; /* filet du cadre photo */
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Hauteur de la barre de menu (maquette : 72 px sur 2000 px de large) */
+  --header-h: clamp(52px, 3.6vw, 76px);
+  /*
+    Unité « maquette » : 1 % de la largeur de l'écran, plafonnée à 1920 px.
+    Les mesures des maquettes Canva, relevées en % de la largeur,
+    s'écrivent calc(N * var(--u)) dans la version ordinateur.
+  */
+  --u: min(1vw, 19.2px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-creme);
+  color: var(--color-texte);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lien d'évitement (accessibilité clavier) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--color-brun);
+  color: var(--color-creme);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-or);
+  outline-offset: 4px;
+}
+
+/*
+  Styles de texte du site.
+  Mobile d'abord, puis tablette (≥ 768 px) et ordinateur (≥ 1024 px, mesures des maquettes).
+*/
+@layer components {
+  /* Grand titre de page : Playfair Display, doré, lettres resserrées comme sur Canva */
+  .titre {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--color-or);
+    letter-spacing: -0.055em;
+    line-height: 1.1;
+    font-size: 34px;
+  }
+  /* Texte courant (présentation, listes « À savoir ») */
+  .texte {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  /* Petits textes : descriptions, durées, prix, coordonnées */
+  .petit {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  /* En-têtes des tableaux de prestations (catégorie, Durée, Prix) */
+  .entete {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-size: 21px;
+  }
+  /* Nom d'une prestation */
+  .presta {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.25;
+    font-size: 18px;
+  }
+
+  @media (min-width: 768px) {
+    .titre {
+      font-size: min(5.6vw, 46px);
+    }
+    .texte {
+      font-size: 17px;
+    }
+    .petit {
+      font-size: 15px;
+    }
+    .entete {
+      font-size: 23px;
+    }
+    .presta {
+      font-size: 19px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .titre {
+      font-size: calc(4.18 * var(--u));
+    }
+    .texte {
+      font-size: max(16px, calc(1.75 * var(--u)));
+      line-height: 1.305;
+    }
+    .petit {
+      font-size: max(13px, calc(1.36 * var(--u)));
+    }
+    .entete {
+      font-size: max(18px, calc(2.05 * var(--u)));
+    }
+    .presta {
+      font-size: max(15px, calc(1.57 * var(--u)));
+    }
+  }
+
+  /* Paragraphes justifiés comme sur la maquette (ordinateur et tablette uniquement) */
+  @media (min-width: 768px) {
+    .justifie {
+      text-align: justify;
+    }
+  }
+}
+
+/* Apparition douce à l'ouverture de la page */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  animation: fade-in 1.1s ease-out both;
+}
+.fade-in-delay-1 {
+  animation-delay: 0.15s;
+}
+.fade-in-delay-2 {
+  animation-delay: 0.35s;
+}
+
+/*
+  Apparition douce au défilement, sans JavaScript.
+  Navigateurs qui ne la gèrent pas : le contenu est simplement affiché.
+*/
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
