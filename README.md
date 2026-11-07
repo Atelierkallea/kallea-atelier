@@ -77,7 +77,6 @@ Les photos sont automatiquement compressées et adaptées à chaque écran.
 
 ## 3. Avant la mise en ligne
 
-- [ ] **Portraits** : les deux photos de la page « Me connaître » sont provisoires (extraites de la maquette). Remplacer `public/images/portrait-elisa.jpg` et `public/images/me-connaitre-bandeau.jpg` par les originaux.
 - [ ] **Tarifs** : vérifier les prix dans `src/content/services.ts`.
 - [ ] **Mentions légales** : compléter `src/content/legal.ts` (nom, SIRET, adresse), puis passer `ready` à `true`. Un lien « Mentions légales » apparaîtra alors en bas de chaque page.
 - [ ] **Nom de domaine** : rien à changer dans le code, l’adresse du site est détectée automatiquement par Vercel (voir étape 5).
@@ -128,7 +127,7 @@ Un bouton « Prendre rendez-vous » apparaîtra automatiquement dans les blocs d
 ## 8. Organisation du projet
 
 ```
-design/              maquettes Canva et logos d’origine (référence)
+design/              maquettes Canva, logos et photos d’origine (référence)
 public/images/       photos du site
 public/logo/         logos au format vectoriel (SVG)
 src/app/             les pages (une par dossier) et la mise en page commune

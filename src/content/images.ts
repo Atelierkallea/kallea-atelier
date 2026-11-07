@@ -6,7 +6,10 @@
  * - `alt` : description lue par les lecteurs d'écran et par Google.
  *   Laisser vide ("") pour une photo purement décorative.
  * - `tint` : léger filtre chaud posé sur la photo pour retrouver le rendu des maquettes.
+ * - `veil` : voile clair posé sur la photo (couleur et opacité de 0 à 1), comme sur les maquettes.
  * - `position` : cadrage de la photo quand elle est recadrée (horizontal vertical).
+ *
+ * Les photos d'origine sont conservées dans `design/photos`.
  */
 
 export type SiteImage = {
@@ -15,6 +18,7 @@ export type SiteImage = {
   width: number;
   height: number;
   tint?: string;
+  veil?: { color: string; opacity: number };
   position?: string;
   /** Recadrage vertical utilisé sur les écrans en hauteur (téléphones, tablettes à la verticale) */
   portrait?: { src: string; width: number; height: number };
@@ -30,20 +34,21 @@ export const images = {
     // Recadrage centré sur la pupille : plus net et plus léger sur téléphone
     portrait: { src: "/images/accueil-regard-portrait.jpg", width: 900, height: 1125 },
   },
-  // Provisoire : extraite de la maquette. À remplacer par la photo d'origine.
+  // Cadrage de la maquette (photo d'origine : design/photos/portrait-plage-original.webp)
   portrait: {
     src: "/images/portrait-elisa.jpg",
     alt: "Elisa, fondatrice de Kalléa Atelier, en robe de dentelle blanche sur une plage de galets au coucher du soleil",
-    width: 585,
-    height: 868,
+    width: 1125,
+    height: 1672,
   },
-  // Provisoire : extraite de la maquette. À remplacer par la photo d'origine.
+  // Photo entière, cadrée sur le visage, avec le voile clair de la maquette
   bandeauMeConnaitre: {
     src: "/images/me-connaitre-bandeau.jpg",
     alt: "",
-    width: 1935,
-    height: 695,
-    position: "50% 50%",
+    width: 1125,
+    height: 2000,
+    position: "50% 21%",
+    veil: { color: "#f8f5f1", opacity: 0.68 },
   },
   bandeauServices: {
     src: "/images/services-regard.jpg",

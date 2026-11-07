@@ -33,6 +33,9 @@ export function PhotoBackground({ image, priority, position = "50% 50%", sizes =
       {image.tint ? (
         <div className="absolute inset-0 mix-blend-multiply" style={{ backgroundColor: image.tint }} />
       ) : null}
+      {image.veil ? (
+        <div className="absolute inset-0" style={{ backgroundColor: image.veil.color, opacity: image.veil.opacity }} />
+      ) : null}
     </div>
   );
 }
