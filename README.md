@@ -3,6 +3,8 @@
 Site vitrine de Kalléa Atelier, « L’art de révéler le regard » (Puget-sur-Argens).
 Réalisé avec Next.js, React, TypeScript et Tailwind CSS, à partir des maquettes Canva (conservées dans `design/maquettes`).
 
+**Site en ligne :** https://kallea-atelier-site.vercel.app (publié automatiquement par Vercel à chaque modification sur GitHub).
+
 **Pages :** Accueil · Me connaître · Mes services · À savoir · Me contacter
 (+ page « Mentions légales » prête à compléter, et une page d’erreur 404).
 
@@ -78,7 +80,7 @@ Les photos sont automatiquement compressées et adaptées à chaque écran.
 - [ ] **Portraits** : les deux photos de la page « Me connaître » sont provisoires (extraites de la maquette). Remplacer `public/images/portrait-elisa.jpg` et `public/images/me-connaitre-bandeau.jpg` par les originaux.
 - [ ] **Tarifs** : vérifier les prix dans `src/content/services.ts`.
 - [ ] **Mentions légales** : compléter `src/content/legal.ts` (nom, SIRET, adresse), puis passer `ready` à `true`. Un lien « Mentions légales » apparaîtra alors en bas de chaque page.
-- [ ] **Nom de domaine** : remplacer `url` dans `src/content/site.ts` par l’adresse définitive (ex. `https://www.kallea-atelier.fr`).
+- [ ] **Nom de domaine** : rien à changer dans le code, l’adresse du site est détectée automatiquement par Vercel (voir étape 5).
 
 ---
 
@@ -88,7 +90,7 @@ Les photos sont automatiquement compressées et adaptées à chaque écran.
 2. Envoyer le projet dans ce dépôt. Le plus simple : installer [GitHub Desktop](https://desktop.github.com), choisir _File → Add local repository_, sélectionner le dossier du projet, puis _Publish repository_.
 3. Créer un compte sur [vercel.com](https://vercel.com) en choisissant « Continue with GitHub ».
 4. Sur Vercel : _Add New… → Project_, choisir le dépôt `kallea-atelier`, puis _Deploy_. Aucun réglage n’est nécessaire.
-5. Après une minute environ, le site est en ligne à une adresse provisoire du type `kallea-atelier.vercel.app`.
+5. Après une minute environ, le site est en ligne à une adresse provisoire du type `kallea-atelier-site.vercel.app`.
 
 ## 5. Connecter votre nom de domaine
 
@@ -96,7 +98,7 @@ Les photos sont automatiquement compressées et adaptées à chaque écran.
 2. Sur Vercel : ouvrir le projet → _Settings_ → _Domains_ → saisir le domaine → _Add_.
 3. Vercel affiche les enregistrements DNS à créer (en général un enregistrement **A** et un **CNAME**). Les recopier dans l’espace client du registraire, rubrique « Zone DNS ».
 4. Patienter (de quelques minutes à quelques heures). Le cadenas HTTPS est ajouté automatiquement.
-5. Mettre à jour `url` dans `src/content/site.ts` avec le domaine définitif.
+5. Rien à modifier dans le code : le site utilise automatiquement le nouveau domaine dès la publication suivante. Pour l’appliquer tout de suite : _Deployments_ → menu « … » de la dernière publication → _Redeploy_.
 
 ## 6. Mettre à jour le site
 

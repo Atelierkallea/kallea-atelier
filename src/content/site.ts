@@ -6,8 +6,13 @@
 export const site = {
   name: "Kalléa Atelier",
   tagline: "L’art de révéler le regard",
-  // À remplacer par le nom de domaine définitif avant la mise en ligne.
-  url: "https://www.kallea-atelier.fr",
+  /*
+    Adresse du site, détectée automatiquement sur Vercel : l'adresse en .vercel.app aujourd'hui,
+    puis le nom de domaine dès qu'il est branché (après une nouvelle publication).
+  */
+  url: process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://kallea-atelier-site.vercel.app",
   locale: "fr_FR",
   city: "Puget-sur-Argens",
   postalCode: "83480",
